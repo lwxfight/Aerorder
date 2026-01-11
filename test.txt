@@ -1,0 +1,762 @@
+/bin/sh: 1: gcc: not found
+05/06 01:55:28 - mmengine - INFO - 
+------------------------------------------------------------
+System environment:
+    sys.platform: linux
+    Python: 3.8.18 | packaged by conda-forge | (default, Dec 23 2023, 17:21:28) [GCC 12.3.0]
+    CUDA available: True
+    MUSA available: False
+    numpy_random_seed: 0
+    GPU 0: NVIDIA GeForce RTX 3090
+    CUDA_HOME: /usr
+    NVCC: Cuda compilation tools, release 11.5, V11.5.119
+    GCC: n/a
+    PyTorch: 1.9.0+cu111
+    PyTorch compiling details: PyTorch built with:
+  - GCC 7.3
+  - C++ Version: 201402
+  - Intel(R) Math Kernel Library Version 2020.0.0 Product Build 20191122 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v2.1.2 (Git Hash 98be7e8afa711dc9b66c8ff3504129cb82013cdb)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 11.1
+  - NVCC architecture flags: -gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86
+  - CuDNN 8.0.5
+  - Magma 2.5.2
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.1, CUDNN_VERSION=8.0.5, CXX_COMPILER=/opt/rh/devtoolset-7/root/usr/bin/c++, CXX_FLAGS= -Wno-deprecated -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -fopenmp -DNDEBUG -DUSE_KINETO -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wno-narrowing -Wall -Wextra -Werror=return-type -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-unused-result -Wno-unused-local-typedefs -Wno-strict-overflow -Wno-strict-aliasing -Wno-error=deprecated-declarations -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=redundant-decls -Wno-error=old-style-cast -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=1.9.0, USE_CUDA=ON, USE_CUDNN=ON, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, 
+
+    TorchVision: 0.10.0+cu111
+    OpenCV: 4.9.0
+    MMEngine: 0.10.3
+
+Runtime environment:
+    cudnn_benchmark: False
+    mp_cfg: {'mp_start_method': 'fork', 'opencv_num_threads': 0}
+    dist_cfg: {'backend': 'nccl'}
+    seed: 0
+    diff_rank_seed: False
+    deterministic: True
+    Distributed launcher: none
+    Distributed training: False
+    GPU number: 1
+------------------------------------------------------------
+
+05/06 01:55:28 - mmengine - INFO - Config:
+ann_file_test = '/home/public/Hidden_Intention/Zhouz/dataset/Drone/view-all/test.txt'
+ann_file_train = '/home/public/Hidden_Intention/Zhouz/dataset/Drone/view-all/train.txt'
+ann_file_val = '/home/public/Hidden_Intention/Zhouz/dataset/Drone/view-all/val.txt'
+auto_scale_lr = dict(base_batch_size=64, enable=False)
+data_root = '/home/public/Hidden_Intention/Zhouz/dataset/MOD/data'
+data_root_val = '/home/public/Hidden_Intention/Zhouz/dataset/MOD/data'
+dataset_type = 'VideoDataset'
+default_hooks = dict(
+    checkpoint=dict(
+        interval=1, max_keep_ckpts=3, save_best='auto', type='CheckpointHook'),
+    logger=dict(ignore_last=False, interval=20, type='LoggerHook'),
+    param_scheduler=dict(type='ParamSchedulerHook'),
+    runtime_info=dict(type='RuntimeInfoHook'),
+    sampler_seed=dict(type='DistSamplerSeedHook'),
+    sync_buffers=dict(type='SyncBuffersHook'),
+    timer=dict(type='IterTimerHook'))
+default_scope = 'mmaction'
+env_cfg = dict(
+    cudnn_benchmark=False,
+    dist_cfg=dict(backend='nccl'),
+    mp_cfg=dict(mp_start_method='fork', opencv_num_threads=0))
+file_client_args = dict(io_backend='disk')
+launcher = 'none'
+load_from = '/home/public/Hidden_Intention/Zhouz/UAV/work_dirs/mod-x3d/best_acc_top1_epoch_34.pth'
+log_level = 'INFO'
+log_processor = dict(by_epoch=True, type='LogProcessor', window_size=20)
+model = dict(
+    backbone=dict(gamma_b=2.25, gamma_d=2.2, gamma_w=1, type='X3D'),
+    cls_head=dict(
+        average_clips='prob',
+        dropout_ratio=0.9,
+        fc1_bias=False,
+        in_channels=432,
+        num_classes=13,
+        spatial_type='avg',
+        type='X3DHead'),
+    data_preprocessor=dict(
+        format_shape='NCTHW',
+        mean=[
+            114.75,
+            114.75,
+            114.75,
+        ],
+        std=[
+            57.38,
+            57.38,
+            57.38,
+        ],
+        type='ActionDataPreprocessor'),
+    test_cfg=None,
+    train_cfg=None,
+    type='Recognizer3D')
+optim_wrapper = dict(
+    clip_grad=dict(max_norm=40, norm_type=2),
+    optimizer=dict(lr=0.0005, momentum=0.9, type='SGD', weight_decay=1e-05))
+param_scheduler = [
+    dict(T_max=300, by_epoch=True, eta_min=0, type='CosineAnnealingLR'),
+]
+randomness = dict(deterministic=True, diff_rank_seed=False, seed=0)
+resume = False
+test_cfg = dict(type='TestLoop')
+test_dataloader = dict(
+    batch_size=3,
+    dataset=dict(
+        ann_file=
+        '/home/public/Hidden_Intention/Zhouz/dataset/Drone/view-all/test.txt',
+        data_prefix=dict(
+            video='/home/public/Hidden_Intention/Zhouz/dataset/MOD/data'),
+        pipeline=[
+            dict(io_backend='disk', type='DecordInit'),
+            dict(
+                clip_len=16,
+                frame_interval=2,
+                num_clips=1,
+                test_mode=True,
+                type='SampleFrames'),
+            dict(type='DecordDecode'),
+            dict(scale=(
+                -1,
+                256,
+            ), type='Resize'),
+            dict(crop_size=224, type='CenterCrop'),
+            dict(input_format='NCTHW', type='FormatShape'),
+            dict(type='PackActionInputs'),
+        ],
+        test_mode=True,
+        type='VideoDataset'),
+    num_workers=8,
+    persistent_workers=True,
+    sampler=dict(shuffle=False, type='DefaultSampler'))
+test_evaluator = dict(type='AccMetric')
+test_pipeline = [
+    dict(io_backend='disk', type='DecordInit'),
+    dict(
+        clip_len=16,
+        frame_interval=2,
+        num_clips=1,
+        test_mode=True,
+        type='SampleFrames'),
+    dict(type='DecordDecode'),
+    dict(scale=(
+        -1,
+        256,
+    ), type='Resize'),
+    dict(crop_size=224, type='CenterCrop'),
+    dict(input_format='NCTHW', type='FormatShape'),
+    dict(type='PackActionInputs'),
+]
+train_cfg = dict(
+    max_epochs=300, type='EpochBasedTrainLoop', val_begin=1, val_interval=1)
+train_dataloader = dict(
+    batch_size=3,
+    dataset=dict(
+        ann_file=
+        '/home/public/Hidden_Intention/Zhouz/dataset/Drone/view-all/train.txt',
+        data_prefix=dict(
+            video='/home/public/Hidden_Intention/Zhouz/dataset/MOD/data'),
+        pipeline=[
+            dict(io_backend='disk', type='DecordInit'),
+            dict(
+                clip_len=16,
+                frame_interval=2,
+                num_clips=1,
+                type='SampleFrames'),
+            dict(type='DecordDecode'),
+            dict(scale=(
+                -1,
+                256,
+            ), type='Resize'),
+            dict(crop_size=(
+                224,
+                224,
+            ), type='CenterCrop'),
+            dict(keep_ratio=False, scale=(
+                224,
+                224,
+            ), type='Resize'),
+            dict(flip_ratio=0.5, type='Flip'),
+            dict(input_format='NCTHW', type='FormatShape'),
+            dict(type='PackActionInputs'),
+        ],
+        type='VideoDataset'),
+    num_workers=8,
+    persistent_workers=True,
+    sampler=dict(shuffle=True, type='DefaultSampler'))
+train_pipeline = [
+    dict(io_backend='disk', type='DecordInit'),
+    dict(clip_len=16, frame_interval=2, num_clips=1, type='SampleFrames'),
+    dict(type='DecordDecode'),
+    dict(scale=(
+        -1,
+        256,
+    ), type='Resize'),
+    dict(crop_size=(
+        224,
+        224,
+    ), type='CenterCrop'),
+    dict(keep_ratio=False, scale=(
+        224,
+        224,
+    ), type='Resize'),
+    dict(flip_ratio=0.5, type='Flip'),
+    dict(input_format='NCTHW', type='FormatShape'),
+    dict(type='PackActionInputs'),
+]
+val_cfg = dict(type='ValLoop')
+val_dataloader = dict(
+    batch_size=3,
+    dataset=dict(
+        ann_file=
+        '/home/public/Hidden_Intention/Zhouz/dataset/Drone/view-all/val.txt',
+        data_prefix=dict(
+            video='/home/public/Hidden_Intention/Zhouz/dataset/MOD/data'),
+        pipeline=[
+            dict(io_backend='disk', type='DecordInit'),
+            dict(
+                clip_len=16,
+                frame_interval=2,
+                num_clips=1,
+                test_mode=True,
+                type='SampleFrames'),
+            dict(type='DecordDecode'),
+            dict(scale=(
+                -1,
+                256,
+            ), type='Resize'),
+            dict(crop_size=224, type='CenterCrop'),
+            dict(input_format='NCTHW', type='FormatShape'),
+            dict(type='PackActionInputs'),
+        ],
+        test_mode=True,
+        type='VideoDataset'),
+    num_workers=8,
+    persistent_workers=True,
+    sampler=dict(shuffle=False, type='DefaultSampler'))
+val_evaluator = dict(type='AccMetric')
+val_pipeline = [
+    dict(io_backend='disk', type='DecordInit'),
+    dict(
+        clip_len=16,
+        frame_interval=2,
+        num_clips=1,
+        test_mode=True,
+        type='SampleFrames'),
+    dict(type='DecordDecode'),
+    dict(scale=(
+        -1,
+        256,
+    ), type='Resize'),
+    dict(crop_size=224, type='CenterCrop'),
+    dict(input_format='NCTHW', type='FormatShape'),
+    dict(type='PackActionInputs'),
+]
+vis_backends = [
+    dict(type='LocalVisBackend'),
+]
+visualizer = dict(
+    type='ActionVisualizer', vis_backends=[
+        dict(type='LocalVisBackend'),
+    ])
+work_dir = 'work_dirs/UAV-four-view1-drop0.9-lr0.0005-w0.00001-class'
+
+05/06 01:55:34 - mmengine - INFO - Distributed training is not used, all SyncBatchNorm (SyncBN) layers in the model will be automatically reverted to BatchNormXd layers if they are used.
+05/06 01:55:34 - mmengine - INFO - Hooks will be executed in the following order:
+before_run:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+before_train:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_train_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(NORMAL      ) DistSamplerSeedHook                
+ -------------------- 
+before_train_iter:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_train_iter:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+after_train_epoch:
+(NORMAL      ) IterTimerHook                      
+(NORMAL      ) SyncBuffersHook                    
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_val:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+before_val_epoch:
+(NORMAL      ) IterTimerHook                      
+(NORMAL      ) SyncBuffersHook                    
+ -------------------- 
+before_val_iter:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_val_iter:
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_val_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+after_val:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+after_train:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_test:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+before_test_epoch:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+before_test_iter:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_test_iter:
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_test_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_test:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+after_run:
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+Loads checkpoint by local backend from path: /home/public/Hidden_Intention/Zhouz/UAV/work_dirs/mod-x3d/best_acc_top1_epoch_34.pth
+The model and loaded state dict do not match exactly
+
+size mismatch for cls_head.fc2.weight: copying a param with shape torch.Size([20, 2048]) from checkpoint, the shape in current model is torch.Size([13, 2048]).
+size mismatch for cls_head.fc2.bias: copying a param with shape torch.Size([20]) from checkpoint, the shape in current model is torch.Size([13]).
+05/06 01:55:34 - mmengine - INFO - Load checkpoint from /home/public/Hidden_Intention/Zhouz/UAV/work_dirs/mod-x3d/best_acc_top1_epoch_34.pth
+05/06 01:55:34 - mmengine - WARNING - "FileClient" will be deprecated in future. Please use io functions in https://mmengine.readthedocs.io/en/latest/api/fileio.html#file-io
+05/06 01:55:34 - mmengine - WARNING - "HardDiskBackend" is the alias of "LocalBackend" and the former will be deprecated in future.
+05/06 01:55:34 - mmengine - INFO - Checkpoints will be saved to /home/public/Hidden_Intention/Zhouz/UAV/work_dirs/UAV-four-view1-drop0.9-lr0.0005-w0.00001-class.
+05/06 01:55:41 - mmengine - INFO - Epoch(train)   [1][20/56]  lr: 5.0000e-04  eta: 1:35:54  time: 0.3429  data_time: 0.2138  memory: 2797  grad_norm: 28.7781  loss: 2.6513  top1_acc: 0.3333  top5_acc: 0.3333  loss_cls: 2.6513
+05/06 01:55:45 - mmengine - INFO - Epoch(train)   [1][40/56]  lr: 5.0000e-04  eta: 1:17:22  time: 0.2111  data_time: 0.0838  memory: 2797  grad_norm: 27.4475  loss: 2.4454  top1_acc: 0.0000  top5_acc: 0.3333  loss_cls: 2.4454
+05/06 01:55:49 - mmengine - INFO - Exp name: x3d_m_16x5x1_facebook-kinetics400-rgb_20240506_015527
+05/06 01:55:49 - mmengine - INFO - Epoch(train)   [1][56/56]  lr: 5.0000e-04  eta: 1:14:10  time: 0.2150  data_time: 0.0952  memory: 2797  grad_norm: 28.4247  loss: 2.6576  top1_acc: 0.0000  top5_acc: 0.0000  loss_cls: 2.6576
+05/06 01:55:49 - mmengine - INFO - Saving checkpoint at 1 epochs
+05/06 01:55:57 - mmengine - INFO - Epoch(val)   [1][20/24]    eta: 0:00:01  time: 0.3485  data_time: 0.3148  memory: 367  
+05/06 01:55:57 - mmengine - INFO - Epoch(val) [1][24/24]    acc/top1: 0.3472  acc/top5: 0.9167  acc/mean1: 0.3205  data_time: 0.2625  time: 0.2961
+05/06 01:55:57 - mmengine - INFO - The best checkpoint with 0.3472 acc/top1 at 1 epoch is saved to best_acc_top1_epoch_1.pth.
+Traceback (most recent call last):
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/config/config.py", line 1479, in pretty_text
+    text, _ = FormatCode(text, style_config=yapf_style)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/yapflib/yapf_api.py", line 203, in FormatCode
+    reformatted_source = FormatTree(tree, style_config=style_config, lines=lines)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/yapflib/yapf_api.py", line 133, in FormatTree
+    llines = pytree_unwrapper.UnwrapPyTree(tree)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_unwrapper.py", line 57, in UnwrapPyTree
+    unwrapper.Visit(tree)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 67, in Visit
+    self.DefaultNodeVisit(node)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 78, in DefaultNodeVisit
+    self.Visit(child)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 62, in Visit
+    getattr(self, method)(node)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_unwrapper.py", line 154, in Visit_simple_stmt
+    self.DefaultNodeVisit(node)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 78, in DefaultNodeVisit
+    self.Visit(child)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 67, in Visit
+    self.DefaultNodeVisit(node)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 78, in DefaultNodeVisit
+    self.Visit(child)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 67, in Visit
+    self.DefaultNodeVisit(node)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 78, in DefaultNodeVisit
+    self.Visit(child)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 62, in Visit
+    getattr(self, method)(node)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_unwrapper.py", line 283, in Visit_listmaker
+    self.DefaultNodeVisit(node)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 78, in DefaultNodeVisit
+    self.Visit(child)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 67, in Visit
+    self.DefaultNodeVisit(node)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 78, in DefaultNodeVisit
+    self.Visit(child)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 67, in Visit
+    self.DefaultNodeVisit(node)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 78, in DefaultNodeVisit
+    self.Visit(child)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 62, in Visit
+    getattr(self, method)(node)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_unwrapper.py", line 300, in Visit_arglist
+    self.DefaultNodeVisit(node)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 78, in DefaultNodeVisit
+    self.Visit(child)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 67, in Visit
+    self.DefaultNodeVisit(node)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 78, in DefaultNodeVisit
+    self.Visit(child)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 67, in Visit
+    self.DefaultNodeVisit(node)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 78, in DefaultNodeVisit
+    self.Visit(child)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 62, in Visit
+    getattr(self, method)(node)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_unwrapper.py", line 296, in Visit_testlist_gexp
+    self.DefaultNodeVisit(node)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 78, in DefaultNodeVisit
+    self.Visit(child)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_visitor.py", line 65, in Visit
+    self.DefaultLeafVisit(node)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/pytree/pytree_unwrapper.py", line 323, in DefaultLeafVisit
+    format_token.FormatToken(leaf, pytree_utils.NodeName(leaf)))
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/yapf/yapflib/format_token.py", line 94, in __init__
+    self.node = node
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "tools/train.py", line 135, in <module>
+    main()
+  File "tools/train.py", line 131, in main
+    runner.train()
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/runner/runner.py", line 1777, in train
+    model = self.train_loop.run()  # type: ignore
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/runner/loops.py", line 102, in run
+    self.runner.val_loop.run()
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/runner/loops.py", line 375, in run
+    self.runner.call_hook('after_val_epoch', metrics=metrics)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/runner/runner.py", line 1839, in call_hook
+    getattr(hook, fn_name)(self, **kwargs)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/hooks/checkpoint_hook.py", line 361, in after_val_epoch
+    self._save_best_checkpoint(runner, metrics)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/hooks/checkpoint_hook.py", line 579, in _save_best_checkpoint
+    self._save_checkpoint_with_step(runner, cur_time, meta)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/hooks/checkpoint_hook.py", line 443, in _save_checkpoint_with_step
+    runner.save_checkpoint(
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/dist/utils.py", line 427, in wrapper
+    return func(*args, **kwargs)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/runner/runner.py", line 2215, in save_checkpoint
+    cfg=self.cfg.pretty_text,
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/config/config.py", line 1484, in pretty_text
+    raise SyntaxError('Failed to format the config file, please '
+SyntaxError: Failed to format the config file, please check the syntax of: 
+ann_file_test='/home/public/Hidden_Intention/Zhouz/dataset/Drone/view-all/test.txt'
+ann_file_train='/home/public/Hidden_Intention/Zhouz/dataset/Drone/view-all/train.txt'
+ann_file_val='/home/public/Hidden_Intention/Zhouz/dataset/Drone/view-all/val.txt'
+auto_scale_lr=dict(
+    base_batch_size=64,
+    enable=False)
+data_root='/home/public/Hidden_Intention/Zhouz/dataset/MOD/data'
+data_root_val='/home/public/Hidden_Intention/Zhouz/dataset/MOD/data'
+dataset_type='VideoDataset'
+default_hooks=dict(
+    checkpoint=dict(
+        interval=1,
+        max_keep_ckpts=3,
+        save_best='auto',
+        type='CheckpointHook'),
+    logger=dict(
+        ignore_last=False,
+        interval=20,
+        type='LoggerHook'),
+    param_scheduler=dict(
+        type='ParamSchedulerHook'),
+    runtime_info=dict(
+        type='RuntimeInfoHook'),
+    sampler_seed=dict(
+        type='DistSamplerSeedHook'),
+    sync_buffers=dict(
+        type='SyncBuffersHook'),
+    timer=dict(
+        type='IterTimerHook'))
+default_scope='mmaction'
+env_cfg=dict(
+    cudnn_benchmark=False,
+    dist_cfg=dict(
+        backend='nccl'),
+    mp_cfg=dict(
+        mp_start_method='fork',
+        opencv_num_threads=0))
+file_client_args=dict(
+    io_backend='disk')
+launcher='none'
+load_from='/home/public/Hidden_Intention/Zhouz/UAV/work_dirs/mod-x3d/best_acc_top1_epoch_34.pth'
+log_level='INFO'
+log_processor=dict(
+    by_epoch=True,
+    type='LogProcessor',
+    window_size=20)
+model=dict(
+    backbone=dict(
+        gamma_b=2.25,
+        gamma_d=2.2,
+        gamma_w=1,
+        type='X3D'),
+    cls_head=dict(
+        average_clips='prob',
+        dropout_ratio=0.9,
+        fc1_bias=False,
+        in_channels=432,
+        num_classes=13,
+        spatial_type='avg',
+        type='X3DHead'),
+    data_preprocessor=dict(
+        format_shape='NCTHW',
+        mean=[
+            114.75,
+            114.75,
+            114.75,
+            ],
+        std=[
+            57.38,
+            57.38,
+            57.38,
+            ],
+        type='ActionDataPreprocessor'),
+    test_cfg=None,
+    train_cfg=None,
+    type='Recognizer3D')
+optim_wrapper=dict(
+    clip_grad=dict(
+        max_norm=40,
+        norm_type=2),
+    optimizer=dict(
+        lr=0.0005,
+        momentum=0.9,
+        type='SGD',
+        weight_decay=1e-05))
+param_scheduler=[
+    dict(T_max=300,
+        by_epoch=True,
+        eta_min=0,
+        type='CosineAnnealingLR'),
+    ]
+randomness=dict(
+    deterministic=True,
+    diff_rank_seed=False,
+    seed=0)
+resume=False
+test_cfg=dict(
+    type='TestLoop')
+test_dataloader=dict(
+    batch_size=3,
+    dataset=dict(
+        ann_file='/home/public/Hidden_Intention/Zhouz/dataset/Drone/view-all/test.txt',
+        data_prefix=dict(
+            video='/home/public/Hidden_Intention/Zhouz/dataset/MOD/data'),
+        pipeline=[
+            dict(io_backend='disk',
+                type='DecordInit'),
+            dict(clip_len=16,
+                frame_interval=2,
+                num_clips=1,
+                test_mode=True,
+                type='SampleFrames'),
+            dict(type='DecordDecode'),
+            dict(scale=(
+                    -1,
+                    256,
+                    ),
+                type='Resize'),
+            dict(crop_size=224,
+                type='CenterCrop'),
+            dict(input_format='NCTHW',
+                type='FormatShape'),
+            dict(type='PackActionInputs'),
+            ],
+        test_mode=True,
+        type='VideoDataset'),
+    num_workers=8,
+    persistent_workers=True,
+    sampler=dict(
+        shuffle=False,
+        type='DefaultSampler'))
+test_evaluator=dict(
+    type='AccMetric')
+test_pipeline=[
+    dict(io_backend='disk',
+        type='DecordInit'),
+    dict(clip_len=16,
+        frame_interval=2,
+        num_clips=1,
+        test_mode=True,
+        type='SampleFrames'),
+    dict(type='DecordDecode'),
+    dict(scale=(
+            -1,
+            256,
+            ),
+        type='Resize'),
+    dict(crop_size=224,
+        type='CenterCrop'),
+    dict(input_format='NCTHW',
+        type='FormatShape'),
+    dict(type='PackActionInputs'),
+    ]
+train_cfg=dict(
+    max_epochs=300,
+    type='EpochBasedTrainLoop',
+    val_begin=1,
+    val_interval=1)
+train_dataloader=dict(
+    batch_size=3,
+    dataset=dict(
+        ann_file='/home/public/Hidden_Intention/Zhouz/dataset/Drone/view-all/train.txt',
+        data_prefix=dict(
+            video='/home/public/Hidden_Intention/Zhouz/dataset/MOD/data'),
+        pipeline=[
+            dict(io_backend='disk',
+                type='DecordInit'),
+            dict(clip_len=16,
+                frame_interval=2,
+                num_clips=1,
+                type='SampleFrames'),
+            dict(type='DecordDecode'),
+            dict(scale=(
+                    -1,
+                    256,
+                    ),
+                type='Resize'),
+            dict(crop_size=(
+                    224,
+                    224,
+                    ),
+                type='CenterCrop'),
+            dict(keep_ratio=False,
+                scale=(
+                    224,
+                    224,
+                    ),
+                type='Resize'),
+            dict(flip_ratio=0.5,
+                type='Flip'),
+            dict(input_format='NCTHW',
+                type='FormatShape'),
+            dict(type='PackActionInputs'),
+            ],
+        type='VideoDataset'),
+    num_workers=8,
+    persistent_workers=True,
+    sampler=dict(
+        shuffle=True,
+        type='DefaultSampler'))
+train_pipeline=[
+    dict(io_backend='disk',
+        type='DecordInit'),
+    dict(clip_len=16,
+        frame_interval=2,
+        num_clips=1,
+        type='SampleFrames'),
+    dict(type='DecordDecode'),
+    dict(scale=(
+            -1,
+            256,
+            ),
+        type='Resize'),
+    dict(crop_size=(
+            224,
+            224,
+            ),
+        type='CenterCrop'),
+    dict(keep_ratio=False,
+        scale=(
+            224,
+            224,
+            ),
+        type='Resize'),
+    dict(flip_ratio=0.5,
+        type='Flip'),
+    dict(input_format='NCTHW',
+        type='FormatShape'),
+    dict(type='PackActionInputs'),
+    ]
+val_cfg=dict(
+    type='ValLoop')
+val_dataloader=dict(
+    batch_size=3,
+    dataset=dict(
+        ann_file='/home/public/Hidden_Intention/Zhouz/dataset/Drone/view-all/val.txt',
+        data_prefix=dict(
+            video='/home/public/Hidden_Intention/Zhouz/dataset/MOD/data'),
+        pipeline=[
+            dict(io_backend='disk',
+                type='DecordInit'),
+            dict(clip_len=16,
+                frame_interval=2,
+                num_clips=1,
+                test_mode=True,
+                type='SampleFrames'),
+            dict(type='DecordDecode'),
+            dict(scale=(
+                    -1,
+                    256,
+                    ),
+                type='Resize'),
+            dict(crop_size=224,
+                type='CenterCrop'),
+            dict(input_format='NCTHW',
+                type='FormatShape'),
+            dict(type='PackActionInputs'),
+            ],
+        test_mode=True,
+        type='VideoDataset'),
+    num_workers=8,
+    persistent_workers=True,
+    sampler=dict(
+        shuffle=False,
+        type='DefaultSampler'))
+val_evaluator=dict(
+    type='AccMetric')
+val_pipeline=[
+    dict(io_backend='disk',
+        type='DecordInit'),
+    dict(clip_len=16,
+        frame_interval=2,
+        num_clips=1,
+        test_mode=True,
+        type='SampleFrames'),
+    dict(type='DecordDecode'),
+    dict(scale=(
+            -1,
+            256,
+            ),
+        type='Resize'),
+    dict(crop_size=224,
+        type='CenterCrop'),
+    dict(input_format='NCTHW',
+        type='FormatShape'),
+    dict(type='PackActionInputs'),
+    ]
+vis_backends=[
+    dict(type='LocalVisBackend'),
+    ]
+visualizer=dict(
+    type='ActionVisualizer',
+    vis_backends=[
+        dict(type='LocalVisBackend'),
+        ])
+work_dir='work_dirs/UAV-four-view1-drop0.9-lr0.0005-w0.00001-class'

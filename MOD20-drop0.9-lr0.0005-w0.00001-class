@@ -1,0 +1,692 @@
++ CONFIG=configs/recognition/x3d/x3d_m_16x5x1_facebook-kinetics400-rgb.py
++ GPUS=2
++ NNODES=1
++ NODE_RANK=0
++ PORT=29502
++ MASTER_ADDR=127.0.0.1
+++ dirname tools/dist_train.sh
+++ dirname tools/dist_train.sh
++ PYTHONPATH=tools/..:
++ python -m torch.distributed.launch --nnodes=1 --node_rank=0 --master_addr=127.0.0.1 --nproc_per_node=2 --master_port=29502 tools/train.py configs/recognition/x3d/x3d_m_16x5x1_facebook-kinetics400-rgb.py --launcher pytorch --work-dir /home/public/Hidden_Intention/Zhouz/UAV/work_dirs/MOD20-drop0.9-lr0.0005-w0.00001-class --seed 0 --deterministic
+/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/distributed/launch.py:163: DeprecationWarning: The 'warn' method is deprecated, use 'warning' instead
+  logger.warn(
+The module torch.distributed.launch is deprecated and going to be removed in future.Migrate to torch.distributed.run
+WARNING:torch.distributed.run:--use_env is deprecated and will be removed in future releases.
+ Please read local_rank from `os.environ('LOCAL_RANK')` instead.
+INFO:torch.distributed.launcher.api:Starting elastic_operator with launch configs:
+  entrypoint       : tools/train.py
+  min_nodes        : 1
+  max_nodes        : 1
+  nproc_per_node   : 2
+  run_id           : none
+  rdzv_backend     : static
+  rdzv_endpoint    : 127.0.0.1:29502
+  rdzv_configs     : {'rank': 0, 'timeout': 900}
+  max_restarts     : 3
+  monitor_interval : 5
+  log_dir          : None
+  metrics_cfg      : {}
+
+INFO:torch.distributed.elastic.agent.server.local_elastic_agent:log directory set to: /tmp/torchelastic_nryyk10b/none_1jmzeykm
+INFO:torch.distributed.elastic.agent.server.api:[default] starting workers for entrypoint: python
+INFO:torch.distributed.elastic.agent.server.api:[default] Rendezvous'ing worker group
+/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/distributed/elastic/utils/store.py:52: FutureWarning: This is an experimental API and will be changed in future.
+  warnings.warn(
+INFO:torch.distributed.elastic.agent.server.api:[default] Rendezvous complete for workers. Result:
+  restart_count=0
+  master_addr=127.0.0.1
+  master_port=29502
+  group_rank=0
+  group_world_size=1
+  local_ranks=[0, 1]
+  role_ranks=[0, 1]
+  global_ranks=[0, 1]
+  role_world_sizes=[2, 2]
+  global_world_sizes=[2, 2]
+
+INFO:torch.distributed.elastic.agent.server.api:[default] Starting worker group
+INFO:torch.distributed.elastic.multiprocessing:Setting worker0 reply file to: /tmp/torchelastic_nryyk10b/none_1jmzeykm/attempt_0/0/error.json
+INFO:torch.distributed.elastic.multiprocessing:Setting worker1 reply file to: /tmp/torchelastic_nryyk10b/none_1jmzeykm/attempt_0/1/error.json
+/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/utils/dl_utils/setup_env.py:56: UserWarning: Setting MKL_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed.
+  warnings.warn(
+/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/utils/dl_utils/setup_env.py:56: UserWarning: Setting MKL_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed.
+  warnings.warn(
+/bin/sh: 1: gcc: not found
+04/02 12:27:52 - mmengine - INFO - 
+------------------------------------------------------------
+System environment:
+    sys.platform: linux
+    Python: 3.8.18 | packaged by conda-forge | (default, Dec 23 2023, 17:21:28) [GCC 12.3.0]
+    CUDA available: True
+    MUSA available: False
+    numpy_random_seed: 0
+    GPU 0,1,2,3: NVIDIA GeForce RTX 3090
+    CUDA_HOME: /usr
+    NVCC: Cuda compilation tools, release 11.5, V11.5.119
+    GCC: n/a
+    PyTorch: 1.9.0+cu111
+    PyTorch compiling details: PyTorch built with:
+  - GCC 7.3
+  - C++ Version: 201402
+  - Intel(R) Math Kernel Library Version 2020.0.0 Product Build 20191122 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v2.1.2 (Git Hash 98be7e8afa711dc9b66c8ff3504129cb82013cdb)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 11.1
+  - NVCC architecture flags: -gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86
+  - CuDNN 8.0.5
+  - Magma 2.5.2
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.1, CUDNN_VERSION=8.0.5, CXX_COMPILER=/opt/rh/devtoolset-7/root/usr/bin/c++, CXX_FLAGS= -Wno-deprecated -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -fopenmp -DNDEBUG -DUSE_KINETO -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wno-narrowing -Wall -Wextra -Werror=return-type -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-unused-result -Wno-unused-local-typedefs -Wno-strict-overflow -Wno-strict-aliasing -Wno-error=deprecated-declarations -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=redundant-decls -Wno-error=old-style-cast -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=1.9.0, USE_CUDA=ON, USE_CUDNN=ON, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, 
+
+    TorchVision: 0.10.0+cu111
+    OpenCV: 4.9.0
+    MMEngine: 0.10.3
+
+Runtime environment:
+    cudnn_benchmark: False
+    mp_cfg: {'mp_start_method': 'fork', 'opencv_num_threads': 0}
+    dist_cfg: {'backend': 'nccl'}
+    seed: 0
+    diff_rank_seed: False
+    deterministic: True
+    Distributed launcher: pytorch
+    Distributed training: True
+    GPU number: 2
+------------------------------------------------------------
+
+/bin/sh: 1: gcc: not found
+04/02 12:27:52 - mmengine - INFO - Config:
+ann_file_test = '/home/public/Hidden_Intention/Zhouz/dataset/MOD/all_list/test.txt'
+ann_file_train = '/home/public/Hidden_Intention/Zhouz/dataset/MOD/all_list/train.txt'
+ann_file_val = '/home/public/Hidden_Intention/Zhouz/dataset/MOD/all_list/val.txt'
+auto_scale_lr = dict(base_batch_size=64, enable=False)
+data_root = '/home/public/Hidden_Intention/Zhouz/dataset/MOD/data'
+data_root_val = '/home/public/Hidden_Intention/Zhouz/dataset/MOD/data'
+dataset_type = 'VideoDataset'
+default_hooks = dict(
+    checkpoint=dict(
+        interval=1, max_keep_ckpts=3, save_best='auto', type='CheckpointHook'),
+    logger=dict(ignore_last=False, interval=20, type='LoggerHook'),
+    param_scheduler=dict(type='ParamSchedulerHook'),
+    runtime_info=dict(type='RuntimeInfoHook'),
+    sampler_seed=dict(type='DistSamplerSeedHook'),
+    sync_buffers=dict(type='SyncBuffersHook'),
+    timer=dict(type='IterTimerHook'))
+default_scope = 'mmaction'
+env_cfg = dict(
+    cudnn_benchmark=False,
+    dist_cfg=dict(backend='nccl'),
+    mp_cfg=dict(mp_start_method='fork', opencv_num_threads=0))
+file_client_args = dict(io_backend='disk')
+launcher = 'pytorch'
+load_from = '/home/public/Hidden_Intention/Zhouz/UAV/work_dirs/mod-x3d/best_acc_top1_epoch_34.pth'
+log_level = 'INFO'
+log_processor = dict(by_epoch=True, type='LogProcessor', window_size=20)
+model = dict(
+    backbone=dict(gamma_b=2.25, gamma_d=2.2, gamma_w=1, type='X3D'),
+    cls_head=dict(
+        average_clips='prob',
+        dropout_ratio=0.9,
+        fc1_bias=False,
+        in_channels=432,
+        num_classes=20,
+        spatial_type='avg',
+        type='X3DHead'),
+    data_preprocessor=dict(
+        format_shape='NCTHW',
+        mean=[
+            114.75,
+            114.75,
+            114.75,
+        ],
+        std=[
+            57.38,
+            57.38,
+            57.38,
+        ],
+        type='ActionDataPreprocessor'),
+    test_cfg=None,
+    train_cfg=None,
+    type='Recognizer3D')
+optim_wrapper = dict(
+    clip_grad=dict(max_norm=40, norm_type=2),
+    optimizer=dict(lr=0.0005, momentum=0.9, type='SGD', weight_decay=1e-05))
+param_scheduler = [
+    dict(T_max=300, by_epoch=True, eta_min=0, type='CosineAnnealingLR'),
+]
+randomness = dict(deterministic=True, diff_rank_seed=False, seed=0)
+resume = False
+test_cfg = dict(type='TestLoop')
+test_dataloader = dict(
+    batch_size=3,
+    dataset=dict(
+        ann_file=
+        '/home/public/Hidden_Intention/Zhouz/dataset/MOD/all_list/test.txt',
+        data_prefix=dict(
+            video='/home/public/Hidden_Intention/Zhouz/dataset/MOD/data'),
+        pipeline=[
+            dict(io_backend='disk', type='DecordInit'),
+            dict(
+                clip_len=16,
+                frame_interval=2,
+                num_clips=1,
+                test_mode=True,
+                type='SampleFrames'),
+            dict(type='DecordDecode'),
+            dict(scale=(
+                -1,
+                256,
+            ), type='Resize'),
+            dict(crop_size=224, type='CenterCrop'),
+            dict(input_format='NCTHW', type='FormatShape'),
+            dict(type='PackActionInputs'),
+        ],
+        test_mode=True,
+        type='VideoDataset'),
+    num_workers=8,
+    persistent_workers=True,
+    sampler=dict(shuffle=False, type='DefaultSampler'))
+test_evaluator = dict(type='AccMetric')
+test_pipeline = [
+    dict(io_backend='disk', type='DecordInit'),
+    dict(
+        clip_len=16,
+        frame_interval=2,
+        num_clips=1,
+        test_mode=True,
+        type='SampleFrames'),
+    dict(type='DecordDecode'),
+    dict(scale=(
+        -1,
+        256,
+    ), type='Resize'),
+    dict(crop_size=224, type='CenterCrop'),
+    dict(input_format='NCTHW', type='FormatShape'),
+    dict(type='PackActionInputs'),
+]
+train_cfg = dict(
+    max_epochs=300, type='EpochBasedTrainLoop', val_begin=1, val_interval=1)
+train_dataloader = dict(
+    batch_size=3,
+    dataset=dict(
+        ann_file=
+        '/home/public/Hidden_Intention/Zhouz/dataset/MOD/all_list/train.txt',
+        data_prefix=dict(
+            video='/home/public/Hidden_Intention/Zhouz/dataset/MOD/data'),
+        pipeline=[
+            dict(io_backend='disk', type='DecordInit'),
+            dict(
+                clip_len=16,
+                frame_interval=2,
+                num_clips=1,
+                type='SampleFrames'),
+            dict(type='DecordDecode'),
+            dict(scale=(
+                -1,
+                256,
+            ), type='Resize'),
+            dict(crop_size=(
+                224,
+                224,
+            ), type='CenterCrop'),
+            dict(keep_ratio=False, scale=(
+                224,
+                224,
+            ), type='Resize'),
+            dict(flip_ratio=0.5, type='Flip'),
+            dict(input_format='NCTHW', type='FormatShape'),
+            dict(type='PackActionInputs'),
+        ],
+        type='VideoDataset'),
+    num_workers=8,
+    persistent_workers=True,
+    sampler=dict(shuffle=True, type='DefaultSampler'))
+train_pipeline = [
+    dict(io_backend='disk', type='DecordInit'),
+    dict(clip_len=16, frame_interval=2, num_clips=1, type='SampleFrames'),
+    dict(type='DecordDecode'),
+    dict(scale=(
+        -1,
+        256,
+    ), type='Resize'),
+    dict(crop_size=(
+        224,
+        224,
+    ), type='CenterCrop'),
+    dict(keep_ratio=False, scale=(
+        224,
+        224,
+    ), type='Resize'),
+    dict(flip_ratio=0.5, type='Flip'),
+    dict(input_format='NCTHW', type='FormatShape'),
+    dict(type='PackActionInputs'),
+]
+val_cfg = dict(type='ValLoop')
+val_dataloader = dict(
+    batch_size=3,
+    dataset=dict(
+        ann_file=
+        '/home/public/Hidden_Intention/Zhouz/dataset/MOD/all_list/val.txt',
+        data_prefix=dict(
+            video='/home/public/Hidden_Intention/Zhouz/dataset/MOD/data'),
+        pipeline=[
+            dict(io_backend='disk', type='DecordInit'),
+            dict(
+                clip_len=16,
+                frame_interval=2,
+                num_clips=1,
+                test_mode=True,
+                type='SampleFrames'),
+            dict(type='DecordDecode'),
+            dict(scale=(
+                -1,
+                256,
+            ), type='Resize'),
+            dict(crop_size=224, type='CenterCrop'),
+            dict(input_format='NCTHW', type='FormatShape'),
+            dict(type='PackActionInputs'),
+        ],
+        test_mode=True,
+        type='VideoDataset'),
+    num_workers=8,
+    persistent_workers=True,
+    sampler=dict(shuffle=False, type='DefaultSampler'))
+val_evaluator = dict(type='AccMetric')
+val_pipeline = [
+    dict(io_backend='disk', type='DecordInit'),
+    dict(
+        clip_len=16,
+        frame_interval=2,
+        num_clips=1,
+        test_mode=True,
+        type='SampleFrames'),
+    dict(type='DecordDecode'),
+    dict(scale=(
+        -1,
+        256,
+    ), type='Resize'),
+    dict(crop_size=224, type='CenterCrop'),
+    dict(input_format='NCTHW', type='FormatShape'),
+    dict(type='PackActionInputs'),
+]
+vis_backends = [
+    dict(type='LocalVisBackend'),
+]
+visualizer = dict(
+    type='ActionVisualizer', vis_backends=[
+        dict(type='LocalVisBackend'),
+    ])
+work_dir = '/home/public/Hidden_Intention/Zhouz/UAV/work_dirs/MOD20-drop0.9-lr0.0005-w0.00001-class'
+
+04/02 12:27:55 - mmengine - INFO - Hooks will be executed in the following order:
+before_run:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+before_train:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_train_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(NORMAL      ) DistSamplerSeedHook                
+ -------------------- 
+before_train_iter:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_train_iter:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+after_train_epoch:
+(NORMAL      ) IterTimerHook                      
+(NORMAL      ) SyncBuffersHook                    
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_val:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+before_val_epoch:
+(NORMAL      ) IterTimerHook                      
+(NORMAL      ) SyncBuffersHook                    
+ -------------------- 
+before_val_iter:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_val_iter:
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_val_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+after_val:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+after_train:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_test:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+before_test_epoch:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+before_test_iter:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_test_iter:
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_test_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_test:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+after_run:
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+Loads checkpoint by local backend from path: /home/public/Hidden_Intention/Zhouz/UAV/work_dirs/mod-x3d/best_acc_top1_epoch_34.pth
+Loads checkpoint by local backend from path: /home/public/Hidden_Intention/Zhouz/UAV/work_dirs/mod-x3d/best_acc_top1_epoch_34.pth
+04/02 12:27:58 - mmengine - INFO - Load checkpoint from /home/public/Hidden_Intention/Zhouz/UAV/work_dirs/mod-x3d/best_acc_top1_epoch_34.pth
+04/02 12:27:58 - mmengine - WARNING - "FileClient" will be deprecated in future. Please use io functions in https://mmengine.readthedocs.io/en/latest/api/fileio.html#file-io
+04/02 12:27:58 - mmengine - WARNING - "HardDiskBackend" is the alias of "LocalBackend" and the former will be deprecated in future.
+04/02 12:27:58 - mmengine - INFO - Checkpoints will be saved to /home/public/Hidden_Intention/Zhouz/UAV/work_dirs/MOD20-drop0.9-lr0.0005-w0.00001-class.
+Used Memory1: 11436122112
+Used Memory3: 11436797952
+Used Memory1: 11642609664
+Used Memory3: 11644604416
+Used Memory1: 11578355712
+Used Memory3: 11582328832
+Used Memory1: 11485990912
+Used Memory3: 11486191616
+Used Memory1: 11459731456
+Used Memory3: 11460067328
+Used Memory1: 11355746304
+Used Memory3: 11356590080
+Used Memory1: 11446390784
+Used Memory3: 11446554624
+Used Memory1: 11392573440
+Used Memory3: 11393810432
+Used Memory1: 11634425856
+Used Memory3: 11542790144
+Used Memory1: 11580051456
+Used Memory3: 11593744384
+Used Memory1: 11578241024
+Used Memory3: 11580272640
+Used Memory1: 11669807104
+Used Memory3: 11673079808
+Used Memory1: 11636273152
+Used Memory3: 11637526528
+Used Memory1: 11611729920
+Used Memory3: 11611918336
+Used Memory1: 11762540544
+Used Memory3: 11767111680
+Used Memory1: 11817701376
+Used Memory3: 11818242048
+Used Memory1: 11892625408
+Used Memory3: 11894095872
+Used Memory1: 11819204608
+Used Memory3: 11823566848
+Used Memory1: 11748655104
+Used Memory3: 11749007360
+Used Memory1: 12048670720
+Used Memory3: 12054822912
+Used Memory1: 11896872960
+Used Memory3: 11897995264
+Used Memory1: 11841990656
+Used Memory3: 11842531328
+Used Memory1: 11796582400
+Used Memory3: 11799867392
+Used Memory1: 11850178560
+Used Memory3: 11850293248
+Used Memory1: 11850850304
+Used Memory3: 11852034048
+Used Memory1: 11911954432
+Used Memory3: 11914903552
+Used Memory1: 12258566144
+Used Memory3: 12259758080
+Used Memory1: 12198072320
+Used Memory3: 12199264256
+Used Memory1: 12265250816
+Used Memory3: 12267487232
+Used Memory1: 12253892608
+Used Memory3: 12254138368
+Used Memory1: 12208504832
+Used Memory3: 12208570368
+Used Memory1: 12215812096
+Used Memory3: 12215840768
+Used Memory1: 12313321472
+Used Memory3: 12313600000
+Used Memory1: 12351606784
+Used Memory3: 12351823872
+Used Memory1: 12273152000
+Used Memory3: 12277612544
+Used Memory1: 12336037888
+Used Memory3: 12336889856
+Used Memory1: 12372549632
+Used Memory3: 12373291008
+Used Memory1: 12332163072
+Used Memory3: 12332388352
+Used Memory1: 12355407872
+Used Memory3: 12358320128
+Used Memory1: 12430290944
+Used Memory3: 12430499840
+Used Memory1: 12389597184
+Used Memory3: 12389654528
+Used Memory1: 12365492224
+Used Memory3: 12370124800
+Used Memory1: 12287250432
+Used Memory3: 12288086016
+Used Memory1: 12254040064
+Used Memory3: 12257435648
+Used Memory1: 12570632192
+Used Memory3: 12573810688
+Used Memory1: 12547280896
+Used Memory3: 12547936256
+Used Memory1: 12539232256
+Used Memory3: 12539691008
+Used Memory1: 12433485824
+Used Memory3: 12434964480
+Used Memory1: 12450263040
+Used Memory3: 12450512896
+Used Memory1: 12539641856
+Used Memory3: 12542222336
+Used Memory1: 12506779648
+Used Memory3: 12506931200
+Used Memory1: 12467265536
+Used Memory3: 12467331072
+Used Memory1: 12467318784
+Used Memory3: 12469764096
+Traceback (most recent call last):
+  File "tools/train.py", line 135, in <module>
+    main()
+  File "tools/train.py", line 131, in main
+    runner.train()
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/runner/runner.py", line 1777, in train
+    model = self.train_loop.run()  # type: ignore
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/runner/loops.py", line 96, in run
+    self.run_epoch()
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/runner/loops.py", line 112, in run_epoch
+    self.run_iter(idx, data_batch)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/runner/loops.py", line 128, in run_iter
+    outputs = self.runner.model.train_step(
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/model/wrappers/distributed.py", line 121, in train_step
+    losses = self._run_forward(data, mode='loss')
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/model/wrappers/distributed.py", line 163, in _run_forward
+    results = self(*data, mode=mode)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/nn/parallel/distributed.py", line 799, in forward
+    output = self.module(*inputs[0], **kwargs[0])
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/public/Hidden_Intention/Zhouz/UAV/mmaction/models/recognizers/base.py", line 623, in forward
+    return self.loss(inputs, inputs1, inputs2, inputs3, data_samples, **kwargs)
+  File "/home/public/Hidden_Intention/Zhouz/UAV/mmaction/models/recognizers/base.py", line 325, in loss
+    self.extract_feat(inputs, inputs1, inputs2, inputs3,
+  File "/home/public/Hidden_Intention/Zhouz/UAV/mmaction/models/recognizers/recognizer3d.py", line 149, in extract_feat
+    view1_y = network1(inputs1)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/public/Hidden_Intention/Zhouz/UAV/mmaction/models/backbones/x3d.py", line 523, in forward
+    x = res_layer(x)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/nn/modules/container.py", line 139, in forward
+    input = module(input)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/public/Hidden_Intention/Zhouz/UAV/mmaction/models/backbones/x3d.py", line 173, in forward
+    out = _inner_forward(x)
+  File "/home/public/Hidden_Intention/Zhouz/UAV/mmaction/models/backbones/x3d.py", line 160, in _inner_forward
+    out = self.swish(out)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmcv/cnn/bricks/swish.py", line 24, in forward
+    return x * torch.sigmoid(x)
+RuntimeError: CUDA out of memory. Tried to allocate 32.00 MiB (GPU 0; 23.68 GiB total capacity; 11.53 GiB already allocated; 6.88 MiB free; 11.65 GiB reserved in total by PyTorch)
+Used Memory1: 11081437184
+Used Memory3: 11082862592
+Traceback (most recent call last):
+  File "tools/train.py", line 135, in <module>
+    main()
+  File "tools/train.py", line 131, in main
+    runner.train()
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/runner/runner.py", line 1777, in train
+    model = self.train_loop.run()  # type: ignore
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/runner/loops.py", line 96, in run
+    self.run_epoch()
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/runner/loops.py", line 112, in run_epoch
+    self.run_iter(idx, data_batch)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/runner/loops.py", line 128, in run_iter
+    outputs = self.runner.model.train_step(
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/model/wrappers/distributed.py", line 121, in train_step
+    losses = self._run_forward(data, mode='loss')
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/model/wrappers/distributed.py", line 163, in _run_forward
+    results = self(*data, mode=mode)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/nn/parallel/distributed.py", line 799, in forward
+    output = self.module(*inputs[0], **kwargs[0])
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/public/Hidden_Intention/Zhouz/UAV/mmaction/models/recognizers/base.py", line 623, in forward
+    return self.loss(inputs, inputs1, inputs2, inputs3, data_samples, **kwargs)
+  File "/home/public/Hidden_Intention/Zhouz/UAV/mmaction/models/recognizers/base.py", line 325, in loss
+    self.extract_feat(inputs, inputs1, inputs2, inputs3,
+  File "/home/public/Hidden_Intention/Zhouz/UAV/mmaction/models/recognizers/recognizer3d.py", line 145, in extract_feat
+    x = network(inputs)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/public/Hidden_Intention/Zhouz/UAV/mmaction/models/backbones/x3d.py", line 523, in forward
+    x = res_layer(x)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/nn/modules/container.py", line 139, in forward
+    input = module(input)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/public/Hidden_Intention/Zhouz/UAV/mmaction/models/backbones/x3d.py", line 173, in forward
+    out = _inner_forward(x)
+  File "/home/public/Hidden_Intention/Zhouz/UAV/mmaction/models/backbones/x3d.py", line 156, in _inner_forward
+    out = self.conv2(out)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmcv/cnn/bricks/conv_module.py", line 281, in forward
+    x = self.norm(x)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 167, in forward
+    return F.batch_norm(
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/nn/functional.py", line 2281, in batch_norm
+    return torch.batch_norm(
+RuntimeError: CUDA out of memory. Tried to allocate 32.00 MiB (GPU 1; 23.68 GiB total capacity; 583.34 MiB already allocated; 18.88 MiB free; 594.00 MiB reserved in total by PyTorch)
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 568152) of binary: /root/miniforge/envs/openmmlab-zz/bin/python
+ERROR:torch.distributed.elastic.agent.server.local_elastic_agent:[default] Worker group failed
+INFO:torch.distributed.elastic.agent.server.api:[default] Worker group FAILED. 3/3 attempts left; will restart worker group
+INFO:torch.distributed.elastic.agent.server.api:[default] Stopping worker group
+INFO:torch.distributed.elastic.agent.server.api:[default] Rendezvous'ing worker group
+INFO:torch.distributed.elastic.agent.server.api:[default] Rendezvous complete for workers. Result:
+  restart_count=1
+  master_addr=127.0.0.1
+  master_port=29502
+  group_rank=0
+  group_world_size=1
+  local_ranks=[0, 1]
+  role_ranks=[0, 1]
+  global_ranks=[0, 1]
+  role_world_sizes=[2, 2]
+  global_world_sizes=[2, 2]
+
+INFO:torch.distributed.elastic.agent.server.api:[default] Starting worker group
+INFO:torch.distributed.elastic.multiprocessing:Setting worker0 reply file to: /tmp/torchelastic_nryyk10b/none_1jmzeykm/attempt_1/0/error.json
+INFO:torch.distributed.elastic.multiprocessing:Setting worker1 reply file to: /tmp/torchelastic_nryyk10b/none_1jmzeykm/attempt_1/1/error.json
+/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/utils/dl_utils/setup_env.py:56: UserWarning: Setting MKL_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed.
+  warnings.warn(
+/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/utils/dl_utils/setup_env.py:56: UserWarning: Setting MKL_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed.
+  warnings.warn(
+Traceback (most recent call last):
+  File "tools/train.py", line 135, in <module>
+    main()
+  File "tools/train.py", line 128, in main
+    runner = Runner.from_cfg(cfg)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/runner/runner.py", line 462, in from_cfg
+    runner = cls(
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/runner/runner.py", line 372, in __init__
+    self.setup_env(env_cfg)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/runner/runner.py", line 675, in setup_env
+    init_dist(self.launcher, **dist_cfg)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/dist/utils.py", line 85, in init_dist
+    _init_dist_pytorch(backend, init_backend=init_backend, **kwargs)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/mmengine/dist/utils.py", line 133, in _init_dist_pytorch
+    torch_dist.init_process_group(backend=backend, **kwargs)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/distributed/distributed_c10d.py", line 547, in init_process_group
+    _store_based_barrier(rank, store, timeout)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/distributed/distributed_c10d.py", line 207, in _store_based_barrier
+    time.sleep(0.01)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/runpy.py", line 194, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/distributed/launch.py", line 173, in <module>
+    main()
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/distributed/launch.py", line 169, in main
+    run(args)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/distributed/run.py", line 621, in run
+    elastic_launch(
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/distributed/launcher/api.py", line 116, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 348, in wrapper
+    return f(*args, **kwargs)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/distributed/launcher/api.py", line 238, in launch_agent
+    result = agent.run()
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/distributed/elastic/metrics/api.py", line 125, in wrapper
+    result = f(*args, **kwargs)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/distributed/elastic/agent/server/api.py", line 700, in run
+    result = self._invoke_run(role)
+  File "/root/miniforge/envs/openmmlab-zz/lib/python3.8/site-packages/torch/distributed/elastic/agent/server/api.py", line 828, in _invoke_run
+    time.sleep(monitor_interval)
+KeyboardInterrupt
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
